@@ -12,6 +12,11 @@ dist/
 
 # Compiled Python bytecode
 *.py[cod]
+build/doctrees
+
+# Sphinx documentation
+docs/source/
+docs/build/doctrees/
 
 # Log files
 *.log

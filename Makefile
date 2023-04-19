@@ -13,13 +13,13 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 doc:
-	cd docs && python3 create_rst_structure.py
+	cd docs && python3 create_rst_structure.py && make html
 
 builddocker:
 	docker build -f docker/Dockerfile -t testing_doc .
 
-rundocker:
-	docker run -i -v `pwd`:/home/sage/tii-claasp -t testing_doc /bin/bash
+rundocker: builddocker
+	docker run -i -v `pwd`:/home/generate-documentation-automatically -t testing_doc /bin/bash
 
 .PHONY: help Makefile
 
