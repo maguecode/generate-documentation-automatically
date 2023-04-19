@@ -14,7 +14,7 @@ jobs:
       run: docker build -f docker/Dockerfile -t testing_doc .
 
     - name: Generate documentation
-      run: docker run -i -v $PWD:/home/generate-documentation-automatically -t testing_doc /bin/bash make doc
+      run: docker run -i -v $PWD:/home/generate-documentation-automatically -t testing_doc make doc
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v7
