@@ -22,7 +22,7 @@ jobs:
         message: "Update documentation"
         add: "docs/html/"
       env:
-        GITHUB_TOKEN: ${{ secrets.SECRET_KEY_TEST }}
+        SECRET_KEY_TEST: ${{ secrets.SECRET_KEY_TEST }}
 
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
@@ -30,4 +30,4 @@ jobs:
         branch: main
         force: true
       env:
-        GITHUB_TOKEN: ${{ secrets.SECRET_KEY_TEST }}
+        SECRET_KEY_TEST: ${{ secrets.SECRET_KEY_TEST }}
