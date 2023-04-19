@@ -17,14 +17,16 @@ jobs:
       run: docker run --rm -v $PWD:/home/generate-documentation-automatically testing_doc make doc
 
     - name: Commit changes
-      uses: actions-js/push@master
+      uses: EndBug/add-and-commit@v7
       with:
-        github_token: ${{ secrets.SECRET_KEY_TEST }}
         message: "Update documentation"
         add: "docs/html/"
+        force: "true"
+        path: "venv"
 
     - name: Push changes
-      uses: rickstaa/action-create-tag@v1
+      uses: ad-m/github-push-action@v0.6.0
       with:
-        github_token: ${{ secrets.TOKEN }}
         branch: main
+        force: true
+        github_token: ${{ secrets.SECRET_KEY_TEST }}
