@@ -30,4 +30,4 @@ jobs:
         branch: main
         force: true
       env:
-        SECRET_KEY_TEST: ${{ secrets.SECRET_KEY_TEST }}
+        github_token: ${{ secrets.SECRET_KEY_TEST }}
