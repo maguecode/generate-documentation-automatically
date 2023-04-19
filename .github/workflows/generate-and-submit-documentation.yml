@@ -1,7 +1,9 @@
 name: Generate and submit documentation
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [ closed ]
+    branches:
+      - main
 
 jobs:
   generate-documentation:
