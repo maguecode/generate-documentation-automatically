@@ -17,3 +17,10 @@ To install this package, simply run the following command:
    pip install this_project
 
 This will install the package and all its dependencies.
+
+If you want to install the package in development mode, run the following command:
+
+.. code-block:: bash
+
+   pip install -e .
+
