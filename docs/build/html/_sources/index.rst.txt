@@ -15,3 +15,5 @@ To install this package, simply run the following command:
 .. code-block:: bash
 
    pip install this_project
+
+This will install the package and all its dependencies.
