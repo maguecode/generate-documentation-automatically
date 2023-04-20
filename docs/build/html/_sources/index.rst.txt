@@ -23,3 +23,4 @@ If you want to install the package in development mode, run the following comman
 .. code-block:: bash
 
    pip install -e .
+
