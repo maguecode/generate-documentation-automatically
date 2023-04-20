@@ -12,36 +12,32 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: docker/setup-buildx-action@v1
-      with:
-        driver-opts: network=host
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-    - name: Create Docker cache
-      id: cache
-      uses: actions/cache@v2
+    - name: Cache Docker layers
+      uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-docker-
+          ${{ runner.os }}-buildx-
 
-    - name: Load Docker cache
-      uses: docker/load-cache@v1
+    - name: Build
+      uses: docker/build-push-action@v4
+      id: built-image
       with:
-        path: /tmp/.buildx-cache
+        context: docker
+        push: false
+        load: true
+        tags: testing_doc
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: Build Docker image
+    - name: Move cache
       run: |
-        docker buildx build \
-        --cache-from=type=local,src=/tmp/.buildx-cache \
-        --cache-to=type=local,mode=max,dest=/tmp/.buildx-cache \
-        -f docker/Dockerfile -t testing_doc .
-
-    - name: Save Docker cache
-      uses: docker/save-cache@v1
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}
+        rm -rf /tmp/.buildx-cache
+        mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
     - name: Generate documentation
       run: docker run --rm -v $PWD:/home/generate-documentation-automatically testing_doc make doc
