@@ -22,5 +22,7 @@ with Path(SOURCE_ROOT_FOLDER, "index.rst").open(mode="w") as index_rst_file:
     index_rst_file.write(".. code-block:: bash\n")
     index_rst_file.write("\n")
     index_rst_file.write("   pip install this_project\n")
+    index_rst_file.write("\n")
+    index_rst_file.write("This will install the package and all its dependencies.\n")
 
 copyfile("conf.py", Path("source", "conf.py"))
