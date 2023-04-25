@@ -24,3 +24,5 @@ If you want to install the package in development mode, run the following comman
 
    pip install -e .
 
+This will install the package and all its dependencies, but will also create a link to the package in the current folder.
+This means that any changes you make to the package will be reflected in the installed package.
