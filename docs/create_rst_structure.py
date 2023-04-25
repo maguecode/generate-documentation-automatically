@@ -31,5 +31,7 @@ with Path(SOURCE_ROOT_FOLDER, "index.rst").open(mode="w") as index_rst_file:
     index_rst_file.write("\n")
     index_rst_file.write("   pip install -e .\n")
     index_rst_file.write("\n")
+    index_rst_file.write("This will install the package and all its dependencies, but will also create a link to the package in the current folder.\n")
+    index_rst_file.write("This means that any changes you make to the package will be reflected in the installed package.\n")
 
 copyfile("conf.py", Path("source", "conf.py"))
